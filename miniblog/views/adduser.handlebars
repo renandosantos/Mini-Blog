@@ -1,4 +1,17 @@
-<form action="/users/create" method="post">
-<p>Nome: <input type="name" name="name" placeholder="Digite seu nome"></p>
-<p>Email: <input type="email" name="email" placeholder="Digite seu email"></p>
+<h1>Cadastrar Novo Usuário</h1>
+
+<form action="/users/create" method="POST" class="form">
+
+    <div class="form-control">
+        <label for="name">Nome:</label>
+        <input type="text" name="name" placeholder="Digite o nome completo" required>
+    </div>
+
+    <div class="form-control">
+        <label for="email">E-mail:</label>
+        <input type="email" name="email" placeholder="Digite o e-mail" required>
+    </div>
+
+    <input type="submit" class="btn-submit" value="Cadastrar Usuário">
+
 </form>

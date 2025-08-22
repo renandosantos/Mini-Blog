@@ -1,0 +1,30 @@
+<h1>Criar um novo Post</h1>
+
+<form action="/posts/create" method="POST" class="form">
+
+    <div class="form-control">
+        <label for="title">Título:</label>
+        <input type="text" name="title" placeholder="Digite o título" required>
+    </div>
+
+    <div class="form-control">
+        <label for="content">Conteúdo:</label>
+        <textarea name="content" placeholder="Escreva aqui..." required></textarea>
+    </div>
+
+    <div class="form-control">
+        <label for="UserId">Autor do Post:</label>
+        {{! O 'name' tem que ser 'UserId' por causa da associação do Sequelize }}
+        <select name="UserId" required>
+            <option value="">-- Selecione um autor --</option>
+            
+            {{! O #each percorre a lista de 'users' que o back-end enviou }}
+            {{#each users}}
+                <option value="{{this.id}}">{{this.name}}</option>
+            {{/each}}
+        </select>
+    </div>
+
+    <input type="submit" class="btn-submit" value="Criar Post">
+
+</form>

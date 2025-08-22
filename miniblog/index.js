@@ -32,7 +32,7 @@ app.post('/users/create', async (req, res) => {
 
     console.log(req.body)
 
-    await UserActivation.create({name, email})
+    await User.create({name, email})
     
     res.redirect('/')
 
@@ -47,6 +47,40 @@ app.get('/', async (req, res) => {
         console.log(error);
     }
 })
+
+app.get('/posts/create', async (req,res) => {
+    try {
+        const users = await User.findAll({ raw: true });
+        res.render('addpost', { users: users });
+        } catch (error) {
+        console.log("Deu merda ao carregar o form:", error);
+    }
+})
+
+app.post('/posts/create', async (req, res) => {
+
+    try {
+        
+        const title = req.body.title;       
+        const content = req.body.content;   
+        const UserId = req.body.UserId;     
+
+        const postData = {
+            title: title,
+            content: content,
+            UserId: UserId  
+        };
+        
+        await Post.create(postData);
+
+        console.log('Post criado com sucesso!');
+        res.redirect('/');
+
+    } catch (error) {
+        console.log("Deu merda na criação do post:", error);
+    }
+    
+});
 // 5. CONEXÃO E SINCRONIZAÇÃO COM O BANCO
 conn
 .sync()
