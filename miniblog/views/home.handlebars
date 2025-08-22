@@ -1,0 +1,18 @@
+<h1>Usuários Cadastrados</h1>
+<hr>
+
+{{#if users.length}}
+    {{! Se a lista de usuários tiver itens, entra aqui }}
+    <div class="container-de-usuarios">
+        {{#each users}}
+            <div class="item-usuario">
+                <p><strong>Nome:</strong> {{this.name}}</p>
+                <p><strong>Email:</strong> {{this.email}}</p>
+                <a href="/users/{{this.id}}">Ver Perfil e Posts</a>
+            </div>
+        {{/each}}
+    </div>
+{{else}}
+    {{! Se a lista estiver vazia, mostra essa mensagem }}
+    <h2>Nenhum usuário cadastrado ainda! <a href="/users/create">Seja o primeiro.</a></h2>
+{{/if}}

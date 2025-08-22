@@ -35,6 +35,17 @@ app.post('/users/create', async (req, res) => {
     await UserActivation.create({name, email})
     
     res.redirect('/')
+
+    
+})
+
+app.get('/', async (req, res) => {
+    try {
+        const users = await User.findAll({ raw: true });
+        res.render('home', { users: users });
+        } catch (error) {
+        console.log(error);
+    }
 })
 // 5. CONEXÃO E SINCRONIZAÇÃO COM O BANCO
 conn
