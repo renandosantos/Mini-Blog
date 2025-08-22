@@ -1,6 +1,5 @@
-const Post = require('Post')
 const { DataTypes } = require('sequelize')
-const conn = ('../db/conn')
+const conn = require('../db/conn')
 const User = conn.define('User', {
     name: {
         type: DataTypes.STRING,
@@ -13,5 +12,4 @@ const User = conn.define('User', {
 
 })
 
-User.hasMany(Post)
 module.exports = User

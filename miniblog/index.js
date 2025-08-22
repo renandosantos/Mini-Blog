@@ -4,6 +4,12 @@ const { engine } = require('express-handlebars')
 const conn = require('./db/conn')
 const port = 5000
 
+const User = require('./models/User')
+const Post = require('./models/Post')
+
+User.hasMany(Post)
+Post.belongsTo(User)
+
 // 2. INICIALIZAÇÃO DO APP
 const app = express()
 // 3. CONFIGURAÇÕES DO APP (Middlewares)
@@ -13,9 +19,23 @@ app.use(express.urlencoded({
 )
 app.use(express.json())
 app.engine('handlebars', engine())
-app.set('view engine', 'Handlebars')
+app.set('view engine', 'handlebars')
 app.use(express.static('public'))
 // 4. ROTAS DA APLICAÇÃO
+app.get('/users/create', (req,res) => {
+    res.render('adduser')
+})
+
+app.post('/users/create', async (req, res) => {
+    const name = req.body.name
+    const email = req.body.email
+
+    console.log(req.body)
+
+    await UserActivation.create({name, email})
+    
+    res.redirect('/')
+})
 // 5. CONEXÃO E SINCRONIZAÇÃO COM O BANCO
 conn
 .sync()

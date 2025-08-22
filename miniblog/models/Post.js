@@ -1,6 +1,5 @@
-const User = require('User')
 const { DataTypes } = require('sequelize')
-const conn = ('../db/conn')
+const conn = require('../db/conn')
 const Post = conn.define('Post', {
     title: {
         type: DataTypes.STRING,
@@ -13,5 +12,4 @@ const Post = conn.define('Post', {
 
 })
 
-Post.belongsTo(User)
 module.exports = Post
