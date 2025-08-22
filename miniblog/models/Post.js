@@ -1,17 +1,17 @@
-const Post = require('Post')
+const User = require('User')
 const { DataTypes } = require('sequelize')
 const conn = ('../db/conn')
-const User = conn.define('User', {
-    name: {
+const Post = conn.define('Post', {
+    title: {
         type: DataTypes.STRING,
         allowNull: false
     },
-    email: {
-        type: DataTypes.STRING,
+    content: {
+        type: DataTypes.TEXT,
         allowNull: false
     },
 
 })
 
-User.hasMany(Post)
-module.exports = User
+Post.belongsTo(User)
+module.exports = Post
