@@ -1,0 +1,25 @@
+<div class="user-details-container">
+    <h1>Perfil de: {{user.name}}</h1>
+    <p><strong>Email:</strong> {{user.email}}</p>
+</div>
+
+<hr>
+
+<h2>Posts deste usuário:</h2>
+
+<div class="posts-container">
+    {{#each user.Posts}}
+        <div class="post-item">
+            <h3>{{this.title}}</h3>
+            <p>{{this.content}}</p>
+
+            {{! --- Bônus: Formulário para Deletar o Post (Item 11) --- }}
+            <form action="/posts/delete" method="POST" class="delete-form-inline">
+                <input type="hidden" name="id" value="{{this.id}}">
+                <input type="submit" class="delete-btn" value="Excluir Post">
+            </form>
+        </div>
+    {{else}}
+        <p>Este usuário ainda não criou nenhum post. <a href="/posts/create">Crie o primeiro!</a></p>
+    {{/each}}
+</div>

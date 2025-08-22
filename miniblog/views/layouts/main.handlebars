@@ -1,12 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mini blog</title>
+    <title>Mini-Blog</title>
+    {{! Link para o nosso arquivo de CSS na pasta public }}
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-    {{{body}}}
+    <nav id="navbar">
+        <div class="logo">
+            <a href="/">Mini-Blog</a>
+        </div>
+        <ul>
+            <li>
+                <a href="/">Home (Usuários)</a>
+            </li>
+            <li>
+                <a href="/users/create">Cadastrar Usuário</a>
+            </li>
+            <li>
+                <a href="/posts/create">Criar Post</a>
+            </li>
+        </ul>
+    </nav>
+    
+    <div class="container-principal">
+        {{{body}}}
+    </div>
 </body>
 </html>

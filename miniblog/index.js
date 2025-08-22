@@ -59,8 +59,7 @@ app.get('/posts/create', async (req,res) => {
 
 app.post('/posts/create', async (req, res) => {
 
-    try {
-        
+    try {        
         const title = req.body.title;       
         const content = req.body.content;   
         const UserId = req.body.UserId;     
@@ -72,15 +71,19 @@ app.post('/posts/create', async (req, res) => {
         };
         
         await Post.create(postData);
-
         console.log('Post criado com sucesso!');
         res.redirect('/');
-
     } catch (error) {
         console.log("Deu merda na criação do post:", error);
-    }
-    
-});
+    }    
+})
+
+app.get('/users/:id', async (req,res) => {
+    const id = req.params.id
+    const user = await User.findOne({ where: { id: id}, include: Post})
+    console.log("DADOS DO USUÁRIO:", user)
+    res.render('userdatails',{ user: user.get({ plain: true }) })
+})
 // 5. CONEXÃO E SINCRONIZAÇÃO COM O BANCO
 conn
 .sync()
